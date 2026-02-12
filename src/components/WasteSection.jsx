@@ -4,13 +4,14 @@ import { clsx } from 'clsx';
 import { format } from 'date-fns';
 import { de } from 'date-fns/locale';
 import { getWasteStyle } from '../utils/wasteUtils';
+import { API_URL } from '../config';
 
 export default function WasteSection() {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('/api/events')
+        fetch(`${API_URL}/api/events`)
             .then(res => res.json())
             .then(data => {
                 setEvents(data);

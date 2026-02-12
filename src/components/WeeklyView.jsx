@@ -6,6 +6,7 @@ import { getHallwayParty, getSidewalkParty, getSnowParty } from '../utils/rotati
 import { getWasteStyle } from '../utils/wasteUtils';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { API_URL } from '../config';
 
 export default function WeeklyView({ parties }) {
     const [wasteEvents, setWasteEvents] = useState([]);
@@ -16,7 +17,7 @@ export default function WeeklyView({ parties }) {
 
     // Fetch waste events
     useEffect(() => {
-        fetch('/api/events')
+        fetch(`${API_URL}/api/events`)
             .then(res => res.json())
             .then(data => setWasteEvents(data))
             .catch(console.error);

@@ -7,6 +7,7 @@ import MonthlyView from './components/MonthlyView'
 import AdminPanel from './components/AdminPanel'
 import { Settings } from 'lucide-react'
 import { getAllParties } from './utils/rotation'
+import { API_URL } from './config'
 
 function App() {
     const [currentView, setCurrentView] = useState('Tag');
@@ -16,7 +17,7 @@ function App() {
 
     // Fetch initial parties
     useEffect(() => {
-        fetch('/api/parties')
+        fetch(`${API_URL}/api/parties`)
             .then(res => res.json())
             .then(data => {
                 if (data && data.length > 0) {

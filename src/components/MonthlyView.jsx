@@ -4,6 +4,7 @@ import { de } from 'date-fns/locale';
 import { getHallwayParty, getSidewalkParty, getSnowParty } from '../utils/rotation';
 import { getWasteStyle } from '../utils/wasteUtils';
 import { clsx } from 'clsx';
+import { API_URL } from '../config';
 
 export default function MonthlyView({ parties }) {
     const [wasteEvents, setWasteEvents] = useState([]);
@@ -19,7 +20,7 @@ export default function MonthlyView({ parties }) {
     const weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
     useEffect(() => {
-        fetch('/api/events')
+        fetch(`${API_URL}/api/events`)
             .then(res => res.json())
             .then(data => setWasteEvents(data))
             .catch(console.error);

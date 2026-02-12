@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Settings, Upload, Save, X, Loader2, Check, User } from 'lucide-react';
+import { API_URL } from '../config';
 
 export default function AdminPanel({ isOpen, onClose, currentParties, onPartiesUpdate }) {
     const fileInputRef = useRef(null);
@@ -25,7 +26,7 @@ export default function AdminPanel({ isOpen, onClose, currentParties, onPartiesU
         formData.append('file', file);
 
         try {
-            const res = await fetch('/api/upload-ics', {
+            const res = await fetch(`${API_URL}/api/upload-ics`, {
                 method: 'POST',
                 body: formData,
             });
@@ -52,7 +53,7 @@ export default function AdminPanel({ isOpen, onClose, currentParties, onPartiesU
     const saveParties = async () => {
         setSavingParties(true);
         try {
-            const res = await fetch('/api/parties', {
+            const res = await fetch(`${API_URL}/api/parties`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
