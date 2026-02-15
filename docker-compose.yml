@@ -23,5 +23,5 @@ services:
       - /volume1/docker/hausplan/data:/app/server/data
     restart: always
     environment:
-      - DATA_DIR=/app/server/data
+      - DATA_DIR=/app/server/data/uploads
       - PARTIES_LIST=${PARTIES_LIST}
