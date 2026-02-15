@@ -1,0 +1,71 @@
+{
+  "events": [
+    {
+      "id": "6e4ac8e016b1cdbe7966f3cfb0c532f2",
+      "type": "Gelbe Tonne",
+      "date": "2026-02-12T23:00:00.000Z",
+      "color": "bg-waste-yellow text-black"
+    },
+    {
+      "id": "aaed2b81bb6104f48b9bd87a9f8b3b24",
+      "type": "Papier",
+      "date": "2026-02-16T23:00:00.000Z",
+      "color": "bg-waste-paper"
+    },
+    {
+      "id": "5f0b5e9a14cbda35fafebc44711aa2a8",
+      "type": "Restmüll",
+      "date": "2026-02-17T23:00:00.000Z",
+      "color": "bg-waste-rest"
+    },
+    {
+      "id": "97059044dcf96c6d6b2f85416acc0464",
+      "type": "Biomüll",
+      "date": "2026-02-24T23:00:00.000Z",
+      "color": "bg-waste-bio"
+    },
+    {
+      "id": "2f0694601d43bc83f03e8bedc778d3a8",
+      "type": "Gelbe Tonne",
+      "date": "2026-02-26T23:00:00.000Z",
+      "color": "bg-waste-yellow text-black"
+    },
+    {
+      "id": "ba1f4de9b2853b330b7a3627f36c6674",
+      "type": "Restmüll",
+      "date": "2026-03-03T23:00:00.000Z",
+      "color": "bg-waste-rest"
+    },
+    {
+      "id": "e76fa33216b54f130cc3a3349b4e60ca",
+      "type": "Biomüll",
+      "date": "2026-03-10T23:00:00.000Z",
+      "color": "bg-waste-bio"
+    },
+    {
+      "id": "ef24866814c641d0e550b2d6d4d0edcc",
+      "type": "Gelbe Tonne",
+      "date": "2026-03-12T23:00:00.000Z",
+      "color": "bg-waste-yellow text-black"
+    },
+    {
+      "id": "0ac2fca6ca8dc79a27d83df6c48a2dfc",
+      "type": "Papier",
+      "date": "2026-03-16T23:00:00.000Z",
+      "color": "bg-waste-paper"
+    },
+    {
+      "id": "1f311c4448e81328b103faa8b643e515",
+      "type": "Restmüll",
+      "date": "2026-03-17T23:00:00.000Z",
+      "color": "bg-waste-rest"
+    }
+  ],
+  "parties": [
+    "Pöter/Kühn",
+    "Melzer",
+    "Schardt",
+    "Goretzky",
+    "Nasgrent"
+  ]
+}

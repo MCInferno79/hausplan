@@ -1,0 +1,27 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        # Ersetze 192.168.1.50 durch die echte IP deines Ugreen NAS
+        - VITE_API_URL=http://192.168.1.50:5100 
+    ports:
+      - "3100:80"
+    restart: always
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "5100:5100"
+    volumes:
+      # Hier wird der Ordner auf deinem NAS direkt verknüpft:
+      # Pfad links: Dein Ordner auf dem Ugreen NAS
+      # Pfad rechts: Der Ordner im Docker-Container
+      - /volume1/docker/hausplan/data:/app/server/data
+    restart: always
+    environment:
+      - DATA_DIR=/app/server/data
+      - PARTIES_LIST=${PARTIES_LIST}

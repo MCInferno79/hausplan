@@ -16,14 +16,30 @@ app.use(cors());
 app.use(express.json());
 
 // Storage for uploaded files
-const upload = multer({ dest: 'uploads/' });
+const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+if (!fs.existsSync(DATA_DIR)) {
+    fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+
+// Store uploads in data/uploads to persist them if desired, or just temp
+// User requested "uploaded .ics files permanently stored", so let's keep them in a specific folder
+const UPLOAD_DIR = path.join(DATA_DIR, 'uploads');
+if (!fs.existsSync(UPLOAD_DIR)) {
+    fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+}
+
+const upload = multer({ dest: UPLOAD_DIR });
 
 // In-memory or file-based storage for events
-const DATA_FILE = path.join(__dirname, 'data.json');
+const DATA_FILE = path.join(DATA_DIR, 'parties.json');
 
 // Ensure data file exists
 if (!fs.existsSync(DATA_FILE)) {
-    fs.writeFileSync(DATA_FILE, JSON.stringify({ events: [], parties: ["Pöter/Kühn", "Melzer", "Schardt", "Goretzky", "Nasgrent"] }));
+    const defaultParties = process.env.PARTIES_LIST
+        ? JSON.parse(process.env.PARTIES_LIST)
+        : ["Pöter/Kühn", "Melzer", "Schardt", "Goretzky", "Nasgrent"];
+
+    fs.writeFileSync(DATA_FILE, JSON.stringify({ events: [], parties: defaultParties }));
 }
 
 // Helpers
@@ -115,8 +131,16 @@ app.post('/api/upload-ics', upload.single('file'), async (req, res) => {
         data.events = futureEvents;
         writeData(data);
 
-        // Cleanup upload
-        fs.unlinkSync(req.file.path);
+        // Create a persistent filename for the uploaded ics
+        const originalName = req.file.originalname;
+        const timestamp = Date.now();
+        const persistentPath = path.join(UPLOAD_DIR, `${timestamp}-${originalName}`);
+
+        // Move file to persistent location
+        fs.renameSync(req.file.path, persistentPath);
+
+        // Optional: We could store the path in the events or a separate list, 
+        // but for now we just keep the file as requested and update the events list.
 
         res.json({ success: true, events: futureEvents });
 
