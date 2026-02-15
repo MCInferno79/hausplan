@@ -15,7 +15,7 @@ COPY server ./server
 RUN mkdir -p server/data
 
 # Expose port
-EXPOSE 5000
+EXPOSE 5100
 
 # Start server
 CMD ["node", "server/index.js"]
