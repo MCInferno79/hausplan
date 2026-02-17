@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile.frontend
       args:
         # Ersetze 192.168.1.50 durch die echte IP deines Ugreen NAS
-        - VITE_API_URL=http://192.168.1.50:5100 
+        - VITE_API_URL=${VITE_API_URL}
     ports:
       - "3100:80"
     restart: always
@@ -25,3 +25,4 @@ services:
     environment:
       - DATA_DIR=/app/server/data/uploads
       - PARTIES_LIST=${PARTIES_LIST}
+      - VITE_API_URL=${VITE_API_URL}
